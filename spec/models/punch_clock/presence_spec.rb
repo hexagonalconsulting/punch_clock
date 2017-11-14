@@ -2,6 +2,8 @@ require 'rails_helper'
 
 module PunchClock
   RSpec.describe Presence, type: :model do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "work" do
+      expect(true).to eq(true)
+    end
   end
 end
