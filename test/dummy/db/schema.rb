@@ -10,13 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171114152117) do
+ActiveRecord::Schema.define(version: 20171114171755) do
 
   create_table "punch_clock_presences", force: :cascade do |t|
     t.integer "user_id"
     t.string "status", default: "offline"
     t.datetime "last_time_browser_open"
     t.datetime "last_time_browser_active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
