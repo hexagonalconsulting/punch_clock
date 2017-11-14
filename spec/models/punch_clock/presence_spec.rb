@@ -3,7 +3,7 @@ require 'rails_helper'
 module PunchClock
   RSpec.describe Presence, type: :model do
     let!(:user) { create(:user)}
-    let(:punch_clock_presence) { user.presence}
+    let(:presence) { user.presence}
 
     before do
       Timecop.freeze
