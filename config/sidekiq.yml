@@ -1,0 +1,10 @@
+:verbose: true
+#:logfile: ./log/sidekiq.log # TODO : decide if we need this
+:concurrency: <%=ENV["SIDEKIQ_CONCURRENCY"] || 5 %>
+:queues:
+  - default
+:schedule:
+  user_report_offline_worker:
+    cron: '1 * * * * *' # Runs every minute.
+    class: UserActivity::UserReportOfflineWorker
+    description: "Reports users as offline when they have not report any type of activity for a certain amount of time, runs every +1 second."
