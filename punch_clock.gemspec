@@ -19,6 +19,9 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 5.1.4"
   s.add_dependency 'state_machines'
   s.add_dependency 'state_machines-activerecord'
+  # Sidekiq
+  s.add_dependency 'sidekiq', '4.2.10'
+  s.add_dependency 'sidekiq-scheduler'
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'rspec-rails', '~> 3.6'
