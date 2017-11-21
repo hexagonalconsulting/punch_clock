@@ -28,4 +28,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'factory_bot_rails'
   s.add_development_dependency 'timecop'
   s.add_development_dependency 'puma'
+  s.add_development_dependency 'devise'
 end
