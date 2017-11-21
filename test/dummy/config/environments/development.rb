@@ -54,4 +54,7 @@ Rails.application.configure do
 
   # seems it connect to this path by default
   #config.action_cable.mount_path = '/cable'
+
+  #needed by devise
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
