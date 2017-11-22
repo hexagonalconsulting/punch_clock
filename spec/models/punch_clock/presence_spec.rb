@@ -188,6 +188,24 @@ module PunchClock
 
       end
 
+      it 'changes last_time_browser_active value when the instrumentation call is triggered' do
+
+        the_value_before_the_instrumentation_call  = presence.last_time_browser_active.to_s
+
+        Timecop.freeze(5.minutes.from_now)
+
+        # This call to instrumentation API plays the role of the #report_browser_as_active in the UserActivityChannel.
+        ActiveSupport::Notifications.instrument 'user.report_browser_as_active',
+                                                id: presence.user.id
+
+        the_value_now = presence.reload.last_time_browser_active.to_s
+
+        expect(the_value_now).to eq(Time.now.getutc.to_s)
+
+        expect(the_value_now).not_to eq(the_value_before_the_instrumentation_call)
+
+      end
+
     end
 
   end
