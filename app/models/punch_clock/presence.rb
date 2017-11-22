@@ -56,20 +56,22 @@ module PunchClock
 
     class << self
       def subscribe_to_events!
+
         ActiveSupport::Notifications.subscribe('user.report_browser_as_active') do |name, start, finish, id, payload|
-          Utils.run_if_allowed(name, start, finish, id, payload) do |name, start, finish, id, payload|
-            user = User.hidrate(payload[:id])
-            user.presence.report_browser_as_active
-          end
+
+          user = User.find(payload[:id])
+          user.presence.report_browser_as_active
+
         end
 
 
         ActiveSupport::Notifications.subscribe('user.report_browser_as_open') do |name, start, finish, id, payload|
-          Utils.run_if_allowed(name, start, finish, id, payload) do |name, start, finish, id, payload|
-            user = User.hidrate(payload[:id])
-            user.presence.report_browser_as_open
-          end
+
+          user = User.find(payload[:id])
+          user.presence.report_browser_as_open
+
         end
+
       end
     end
 

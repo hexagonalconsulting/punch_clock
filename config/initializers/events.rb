@@ -1,0 +1,1 @@
+PunchClock::Presence.subscribe_to_events!
