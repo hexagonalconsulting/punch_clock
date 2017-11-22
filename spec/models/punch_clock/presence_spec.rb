@@ -167,5 +167,19 @@ module PunchClock
       end
 
     end
+
+    describe 'intrumentation hooks' do
+
+      it 'receives the message to which is subscribed when the instrumentation call is triggered' do
+        ActiveSupport::Notifications.should_receive(:instrument).with("user.report_browser_as_open", id: presence.user.id)
+        # This call to instrumentation plays the role of the #report_browser_as_open in the UserActivityChannel.
+        ActiveSupport::Notifications.instrument 'user.report_browser_as_open',
+                                                id: presence.user.id
+
+        expect(presence).to receive(:report_browser_as_open)
+
+      end
+    end
+
   end
 end
