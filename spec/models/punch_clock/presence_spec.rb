@@ -170,15 +170,24 @@ module PunchClock
 
     describe 'intrumentation hooks' do
 
-      it 'receives the message to which is subscribed when the instrumentation call is triggered' do
-        ActiveSupport::Notifications.should_receive(:instrument).with("user.report_browser_as_open", id: presence.user.id)
-        # This call to instrumentation plays the role of the #report_browser_as_open in the UserActivityChannel.
-        ActiveSupport::Notifications.instrument 'user.report_browser_as_open',
-                                                id: presence.user.id
+      it 'changes last_time_browser_open value when the instrumentation call is triggered' do
 
-        expect(presence).to receive(:report_browser_as_open)
+        the_value_before_the_instrumentation_call  = presence.last_time_browser_open.to_s
+
+        Timecop.freeze(5.minutes.from_now)
+
+        # This call to instrumentation API plays the role of the #report_browser_as_open in the UserActivityChannel.
+        ActiveSupport::Notifications.instrument 'user.report_browser_as_open',
+                                                  id: presence.user.id
+
+        the_value_now = presence.reload.last_time_browser_open.to_s
+
+        expect(the_value_now).to eq(Time.now.getutc.to_s)
+
+        expect(the_value_now).not_to eq(the_value_before_the_instrumentation_call)
 
       end
+
     end
 
   end
