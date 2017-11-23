@@ -8,7 +8,14 @@ if (document.querySelectorAll('meta[name=action-cable-url]').length) {
 
         connected: function() {
             // Called when the subscription is ready for use on the server
-            console.log('subscribed to PunchClock::UserActivityChannel')
+            if ( window.AppInfo.railsEnv === 'development' || window.AppInfo.railsEnv === 'test' ) {
+                var userActivitySubscriptionMessage = 'you are subscribed to PunchClock::UserActivityChannel';
+                console.log(userActivitySubscriptionMessage);
+                document
+                    .getElementById('user-activity-subscription-message')
+                    .insertAdjacentHTML('beforeend', userActivitySubscriptionMessage );
+            }
+
         },
 
         disconnected: function() {
