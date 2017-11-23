@@ -5,9 +5,12 @@
 //= require_self
 //= require_tree ./channels
 
-(function() {
-  this.App || (this.App = {});
+// This meta tag only is included in dummy/app/views/layouts/application.html.erb if there is a current_user from devise.
+if (document.querySelectorAll('meta[name=action-cable-url]').length) {
+    (function () {
+        this.App || (this.App = {});
 
-  App.cable = ActionCable.createConsumer();
+        App.cable = ActionCable.createConsumer();
 
-}).call(this);
+    }).call(this);
+}
