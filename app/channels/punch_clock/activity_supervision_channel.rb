@@ -5,7 +5,7 @@ module PunchClock
       if current_user.superadmin?
         user = User.find(params[:id])
         stream_for user
-        broadcast_status_for(user)
+        broadcast_status_for(user.id)
       else
         reject
       end
@@ -17,9 +17,9 @@ module PunchClock
     delegate :broadcast_status_for, to: :class
 
     class << self
-      def broadcast_status_for(user_or_id, status= nil)
+      def broadcast_status_for(id, status= nil)
 
-        user = User.hidrate(user_or_id)
+        user = User.find(id)
         status = status || user.presence.status
 
         broadcast_to(user,    {status: status,   id: user.id})
