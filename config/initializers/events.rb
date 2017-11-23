@@ -1,1 +1,2 @@
 PunchClock::Presence.subscribe_to_events!
+PunchClock::ActivitySupervisionChannel.subscribe_to_events!
