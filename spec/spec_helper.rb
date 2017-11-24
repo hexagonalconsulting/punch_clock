@@ -49,12 +49,8 @@ RSpec.configure do |config|
     Timecop.return
   end
 
-  config.before(:each, type: :system) do
-    driven_by :rack_test
-  end
-
   config.before(:each, type: :system, js: true) do
-    driven_by :selenium_chrome_headless
+    driven_by :firefox
   end
 
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
