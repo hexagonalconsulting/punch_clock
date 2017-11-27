@@ -21,10 +21,11 @@ module PunchClock
         find_button('Log in').click
       end
 
-      visit examples_url
     end
 
     describe 'evidence of connection to the channels' do
+
+      before { visit examples_url }
 
       it 'is in the right path, the one that all other test will be using' do
         expect(page).to have_current_path(examples_path)
