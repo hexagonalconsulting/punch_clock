@@ -23,6 +23,10 @@ module PunchClock
         expect(page).to have_current_path(examples_path)
       end
 
+      it 'there is a user registered in the db  (the one just signed up in the before block)' do
+        expect(User.count).to eq(1)
+      end
+
       describe 'users without superadmin role' do
 
         it 'can connect to the users UserActivityChannel' do
