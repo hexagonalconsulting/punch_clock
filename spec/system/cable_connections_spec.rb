@@ -17,9 +17,19 @@ module PunchClock
 
     end
 
-
     describe 'evidence of connection to the channels' do
 
+      describe 'users without superadmin role' do
+
+        it 'can connect to the users UserActivityChannel' do
+          expect(page).to have_content('you are subscribed to PunchClock::UserActivityChannel')
+        end
+
+        it 'is rejected when trying to subscribe to the ActivitySupervisionChannel' do
+          expect(page).to have_content('you were rejected from the PunchClock::ActivitySupervisionChannel')
+        end
+
+      end
 
       describe 'users with superadmin role' do
 
@@ -47,5 +57,6 @@ module PunchClock
       end
 
     end
+
   end
 end
