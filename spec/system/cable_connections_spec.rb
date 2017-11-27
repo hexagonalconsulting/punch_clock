@@ -13,6 +13,13 @@ module PunchClock
 
       find_button('Sign up').click
 
+      visit '/users/sign_in'
+
+      fill_in('Email',    with: 'fancyemail@domain.com')
+      fill_in('Password', with: 'super_secret!')
+
+      find_button('Log in').click
+
       visit root_url
 
     end
