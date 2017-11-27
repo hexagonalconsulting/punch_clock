@@ -15,6 +15,8 @@ module PunchClock
 
       visit root_url
 
+      sleep(3) # Just give it some time to connect to the cable.
+
     end
 
     describe 'evidence of connection to the channels' do
