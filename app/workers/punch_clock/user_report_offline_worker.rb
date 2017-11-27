@@ -1,4 +1,4 @@
-module UserActivity
+module PunchClock
   class UserReportOfflineWorker
     include Sidekiq::Worker
     sidekiq_options :retry => 0

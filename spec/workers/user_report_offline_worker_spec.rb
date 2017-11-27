@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'UserActivity::UserReportOfflineWorker' do
+RSpec.describe 'PunchClock::UserReportOfflineWorker' do
 
   let!(:user){create(:user)}
 
@@ -18,14 +18,14 @@ RSpec.describe 'UserActivity::UserReportOfflineWorker' do
     describe 'user presence status is online' do
 
       it 'should change presence to offline if user have not reported any activity in the last minute' do
-        UserActivity::UserReportOfflineWorker.new.perform
+        PunchClock::UserReportOfflineWorker.new.perform
         expect(user.presence.reload.offline?).to eq(true)
       end
 
       it 'should not change presence to offline if user have reported the browser as open in the last minute' do
         user.presence.report_browser_as_open
         Timecop.travel(30.seconds.from_now)
-        UserActivity::UserReportOfflineWorker.new.perform
+        PunchClock::UserReportOfflineWorker.new.perform
         expect(user.presence.reload.offline?).to eq(false)
       end
 
@@ -39,7 +39,7 @@ RSpec.describe 'UserActivity::UserReportOfflineWorker' do
 
       it 'should change presence to offline if user have not reported any activity in the last minute' do
 
-        UserActivity::UserReportOfflineWorker.new.perform
+        PunchClock::UserReportOfflineWorker.new.perform
         expect(user.presence.reload.offline?).to eq(true)
 
       end
@@ -48,7 +48,7 @@ RSpec.describe 'UserActivity::UserReportOfflineWorker' do
 
         user.presence.report_browser_as_open
         Timecop.travel(30.seconds.from_now)
-        UserActivity::UserReportOfflineWorker.new.perform
+        PunchClock::UserReportOfflineWorker.new.perform
         expect(user.presence.reload.offline?).to eq(false)
 
       end
