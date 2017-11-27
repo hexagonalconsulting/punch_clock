@@ -13,11 +13,15 @@ module PunchClock
 
       find_button('Sign up').click
 
-      visit root_url
+      visit examples_url
 
     end
 
     describe 'evidence of connection to the channels' do
+
+      it 'is in the right path, the one that all other test will be using' do
+        expect(page).to have_current_path(examples_path)
+      end
 
       describe 'users without superadmin role' do
 
