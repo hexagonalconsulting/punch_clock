@@ -15,6 +15,13 @@ module PunchClock
 
       visit examples_url
 
+      if current_path != examples_path && current_path == '/users/sign_in'
+        fill_in('Email',    with: 'fancyemail@domain.com')
+        fill_in('Password', with: 'super_secret!')
+        find_button('Log in').click
+      end
+
+      visit examples_url
     end
 
     describe 'evidence of connection to the channels' do
