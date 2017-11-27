@@ -21,7 +21,7 @@ module PunchClock
     describe 'evidence of connection to the channels' do
 
 
-      describe 'users with superadmin role can connect to the superadmins channel' do
+      describe 'users with superadmin role' do
 
         before do
           # let the user be a superadmin
