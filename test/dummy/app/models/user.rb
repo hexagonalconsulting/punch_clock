@@ -8,8 +8,4 @@ class User < ApplicationRecord
   def presence
     super || create_presence!(user: self)
   end
-
-  def superadmin?
-    true
-  end
 end

@@ -4,5 +4,6 @@ FactoryBot.define do
     email 'fancyemail@domain.com'
     password 'super_secret!'
     password_confirmation 'super_secret!'
+    superadmin false
   end
 end
