@@ -44,7 +44,7 @@ module PunchClock
         end
 
         it 'get updates from a user using the subscription to the ActivitySupervisionChannel' do
-          sleep(1)
+          sleep(3)
           expect(page).to have_content('user with the id: 1 has the status: online')
         end
 
